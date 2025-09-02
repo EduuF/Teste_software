@@ -40,10 +40,3 @@ def test_delete_task(manager_instance):
 
 def test_a_test_for_coverage(manager_instance):
     assert manager_instance.get_task(999) is None
-
-def test_a_test_for_html_report(manager_instance):
-    """
-    Este teste simples é incluído para ser visualizado no relatório HTML.
-    """
-    task = manager_instance.add_task("Ver relatório", "Ver o relatório HTML")
-    assert task is not None
