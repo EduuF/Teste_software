@@ -12,14 +12,11 @@ def test_add_task(manager_instance):
     assert task["completed"] == False
     assert manager_instance.get_task(task["id"]) is not None
 
-class TestTaskManagerUnittest(unittest.TestCase):
-    def setUp(self):
-        """Método chamado antes de cada teste."""
-        self.manager = TaskManager()
-
-    def test_add_task_unittest(self):
-        task = self.manager.add_task("Comprar pão", "Na padaria")
-        self.assertEqual(task["title"], "Comprar pão")
+def test_add_task_not_pass(manager_instance):
+    task = manager_instance.add_task("Estudar Pytest", "Preparar o seminário")
+    assert task["title"] == "Estudar Pytest"
+    assert task["completed"] == True
+    assert manager_instance.get_task(task["id"]) is not None
 
 def test_add_two_tasks(manager_instance):
     manager_instance.add_task("Tarefa 1", "Descrição da Tarefa 1")
@@ -40,3 +37,12 @@ def test_delete_task(manager_instance):
 
 def test_a_test_for_coverage(manager_instance):
     assert manager_instance.get_task(999) is None
+
+
+class TestTaskManagerUnittest(unittest.TestCase):
+    def setUp(self):
+        self.manager = TaskManager()
+
+    def test_add_task_unittest(self):
+        task = self.manager.add_task("Comprar pão", "Na padaria")
+        self.assertEqual(task["title"], "Comprar pão")
